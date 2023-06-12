@@ -198,7 +198,12 @@ async function run() {
                 const result = await instructorCollection.find().toArray();
                 res.send(result)
               })
-  
+              app.post('/enrolled', async(req, res)=>{
+                const enrolls = req.body;
+                const result = await enrollCollection.insertOne(enrolls);
+                res.send(result)
+          
+              })
   
   
 
