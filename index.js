@@ -204,6 +204,11 @@ async function run() {
                 res.send(result)
           
               })
+              app.get('/enrolled', verifyJwt,  async(req, res)=>{
+                const userEmail = req.query.email;
+                if(!userEmail){
+                  res.send([])
+                }
   
   
 
