@@ -209,6 +209,16 @@ async function run() {
                 if(!userEmail){
                   res.send([])
                 }
+                const decodedEmail = req.decoded.email;
+                if(userEmail !== decodedEmail){
+                  return res.status(403).send({error: true, message: 'forbidden access'})
+          
+                }
+          
+                const query = {email: userEmail}
+                const result = await enrollCollection.find(query).toArray();
+                res.send(result)
+              })
   
   
 
