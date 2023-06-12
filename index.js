@@ -132,7 +132,18 @@ async function run() {
         const result = await usersCollection.deleteOne(query)
         res.send(result)
       })
-      
+      app.get('/classes' , async(req, res)=>{
+        const result = await classCollection.find().toArray();
+        res.send(result)
+      })
+  
+      app.get('/classes/:id', async (req, res) => {
+        const id = req.params.id
+        console.log(id);
+        const query = { _id: new ObjectId(id) }
+        const result = await classCollection.findOne(query);
+        res.send(result)
+    })      
   
   
   
